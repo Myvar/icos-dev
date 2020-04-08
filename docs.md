@@ -5,7 +5,7 @@ Internal Communications Orchestration Services
 # Installation
 
 ### Requirements
-A Kubernetes Kluster
+A Kubernetes Cluster
 
 {{TODO need to create the contracts first}}
 
@@ -13,7 +13,7 @@ A Kubernetes Kluster
 
 ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
 
-Or, in more simple terms You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them .
+Or, in more simple terms: You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them .
 
 # How To/ FAQ
 
@@ -102,17 +102,17 @@ spec:
 ```
 
 # Microservices
-ICOS Has two primary types of microservices and three methods of inter microservice communication. The first kind is the APi, the second kind is the Internal microservice. The three methods of communication are http, ICP and P2P .
+ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the APi, the second kind is the Internal microservice. The three methods of communication are http, ICP and P2P .
 
 Http microservices has two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and are designed for internal use only.
 
  Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
 # Structure
-A recommended structure for your project is to create a few folders in your project one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understand way of structuring things so that groups of programmers can work together without the confusion and chaos that inevitably results from poorly defined standards. 
+A recommended structure for your project is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion and chaos that inevitably results from poorly defined standards. 
 
 # ICP Service
-The ICP service is the simplest form of microservice to create, Simply create an interface with all the methods you want that service to do then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
+The ICP service is the simplest form of microservice to create. Simply create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
 
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
@@ -201,7 +201,7 @@ public HttpResponse(byte[] res, string mimeType)
 Using the template engine is just as simple. First: create an ``index.html`` file in the ``www`` Folder you should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
 
 ```html
-<html>
+<html
 <head>
     <title>Test</title>
 </head>
@@ -219,14 +219,13 @@ And now for the ``IUserView``
     [IcosCfg(Cfg.Protocol, Protocol.Http)]
     [IcosCfg(Cfg.Domain, "foo.example.com")]
     [IcosCfg(Cfg.ViewEngine, ViewEngine.Static)]
-    public interface IUserView
     {
         [IcosHttpPath("/")]
         User Index(HttpRequest req);
     }
 
 ```
-Note that the method index has the same Name as the file index. Multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
+Note that the  index has the same Name as the file index. Multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
 Now create a class called ``User`` in the ``Model`` folder:
 
 ```csharp
@@ -256,10 +255,7 @@ public class UserView : IUserView
 Note that we are returning the user object and that the properties of the object are used in the templating engine to replace the moustache handlebars.
 
 ## Static Host
-Any content placed in the ``www`` fault that does not have a corresponding method with a view engine attribute marked interface will Simply Be statically served. You can use this to serve CSS JavaScript or any other resources you might want to statically serve.
-
-# Dependency Injection
-Looking at the example used earlier:
+Any content example used earlier:
 ```csharp
 public class Gateway : IGateway
 {
