@@ -9,7 +9,7 @@ A Kubernetes Kluster
 
 {{TODO need to create the contracts first}}
 
-# Description of What ICOS Does
+# Description of what ICOS does
 
 ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
 
@@ -17,13 +17,13 @@ Or, in more simple terms You simply write a program in C# with different interfa
 
 # How To/ FAQ
 
-## The Template Engine is Escaping all my HTML
+### The Template Engine is Escaping all my HTML
 Instead of ``{{foo}}`` do ``{{{foo}}}`` thats 3 Brackets and it will work
 
-## How to use Cookies
+### How to use Cookies
 Using Cookies Is Very Simple. Simply add your cookie to the ``HttpResponce.Cookies`` to create your Cookie. Thereafter your Cookie will be present in ``HttpRequest.Cookies``.
 
-## How to add ``Access-Control-Allow-Origin`` header
+### How to add ``Access-Control-Allow-Origin`` header
 ```csharp
  public HttpResponse GetSpotInQueue(HttpRequest req)
  {
@@ -33,19 +33,19 @@ Using Cookies Is Very Simple. Simply add your cookie to the ``HttpResponce.Cooki
   }
 
 ```
-## How to Remove the Warning ``Field '_foo' is never assigned``
+### How to Remove the Warning ``Field '_foo' is never assigned``
 
 Add the following to the top of your file right after the using statements.
 ```csharp
 #pragma warning disable 649
 ```
 
-## P2P
+### P2P
 Note: P2P is currently considered to be in beta and is not to be used for mission critical systems.
 
 Simply use ``Action<>`` or ``Func<>`` and call it to create p2p communication for more details, look at the following example
 
-## TCP and UDP
+### TCP and UDP
 
 To use a Custom TCP or UDP port, simply create a Http Microservice and add the CustomPort Attribute:
 
@@ -67,7 +67,7 @@ This will still create a web page that is accessible, but when you implement the
 
 NOTE: You will have to add proper configs to your Kubernetes Cluster and Load Balancers to enable your custom port to be ingressed.
 
-# How Do i Use SSL
+### How Do I Use SSL
 Follow this tutorial:
 https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes
 Then Add this to your ``_res`` file:
@@ -196,7 +196,7 @@ Will Return the provided byte[] as the body of the Response, with the provided m
 public HttpResponse(byte[] res, string mimeType)
 ```
 
-## TemplateEngine
+## Template Engine
 
 Using the template engine is just as simple. First: create an ``index.html`` file in the ``www`` Folder you should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
 
