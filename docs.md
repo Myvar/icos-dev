@@ -13,7 +13,7 @@ A Kubernetes Cluster
 
 ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
 
-Or, in more simple terms: You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them .
+You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them .
 
 # How To/ FAQ
 
@@ -47,7 +47,7 @@ Simply use ``Action<>`` or ``Func<>`` and call it to create p2p communication fo
 
 ### TCP and UDP
 
-To use a Custom TCP or UDP port, simply create a Http Microservice and add the CustomPort Attribute:
+To use a Custom TCP or UDP port, create an Http Microservice and add the CustomPort Attribute:
 
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
@@ -109,10 +109,10 @@ Http microservices has two methods of operation. The first method is a rest API 
  Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
 # Structure
-A recommended structure for your project is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion and chaos that inevitably results from poorly defined standards. 
+A recommended structure for your project is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
 
 # ICP Service
-The ICP service is the simplest form of microservice to create. Simply create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
+The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
 
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
@@ -125,7 +125,7 @@ The ICP service is the simplest form of microservice to create. Simply create an
 
 ```
 
-Next you will merely implement the interface again. it is recommended to place the implementation in the implementation folder 
+Next you will merely implement the interface again. It is recommended to place the implementation in the implementation folder 
 
 ```csharp
     public class TimeProvider : ITimeProvider
@@ -198,7 +198,7 @@ public HttpResponse(byte[] res, string mimeType)
 
 ## Template Engine
 
-Using the template engine is just as simple. First: create an ``index.html`` file in the ``www`` Folder you should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
+Using the template engine is easy. First: create an ``index.html`` file in the ``www`` Folder you should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
 
 ```html
 <html
@@ -345,7 +345,7 @@ Used to enable the Static View Engine. NOTE: View engines may only be used on HT
 
 
 # Kubespec Overrides (Optional)
-If you want to change the kubernetes specs, to add resource constraints or use a cert issue with ssl, you can simple create a file in the ``_res`` folder with the following names and base content, Note you must be sure to add the proper reg-cred for your private docker registries.
+If you want to change the kubernetes specs, to add resource constraints or use a cert issue with ssl, you can easily create a file in the ``_res`` folder with the following names and base content, Note you must be sure to add the proper reg-cred for your private docker registries.
 
 Deployment.yaml
 ```yaml
