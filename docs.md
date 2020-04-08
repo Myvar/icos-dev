@@ -21,24 +21,9 @@ You simply write a program in C# with different interfaces for every microservic
 Instead of ``{{foo}}`` do ``{{{foo}}}`` thats 3 Brackets and it will work
 
 ### How to use Cookies
-Using Cookies Is Very Simple. Simply add your cookie to the ``HttpResponce.Cookies`` to create your Cookie. Thereafter your Cookie will be present in ``HttpRequest.Cookies``.
+To add your cookie to the ``HttpResponce.Cookies`` to create your Cookie. Thereafter your Cookie will be present in ``HttpRequest.Cookies``.
 
 ### How to add ``Access-Control-Allow-Origin`` header
-```csharp
- public HttpResponse GetSpotInQueue(HttpRequest req)
- {
-        var re = new HttpResponse(“:)”);
-        re.CustomHeaders.Add("Access-Control-Allow-Origin: *");
-        return re;
-  }
-
-```
-### How to Remove the Warning ``Field '_foo' is never assigned``
-
-Add the following to the top of your file right after the using statements.
-```csharp
-#pragma warning disable 649
-```
 
 ### P2P
 Note: P2P is currently considered to be in beta and is not to be used for mission critical systems.
