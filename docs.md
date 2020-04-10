@@ -89,7 +89,7 @@ spec:
 # Microservices
 ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the APi, the second kind is the Internal microservice. The three methods of communication are http, ICP and P2P .
 
-Http microservices has two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and are designed for internal use only.
+Http microservices have two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and are designed for internal use only.
 
  Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
@@ -183,7 +183,7 @@ public HttpResponse(byte[] res, string mimeType)
 
 ## Template Engine
 
-Using the template engine is easy. First: create an ``index.html`` file in the ``www`` Folder you should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
+Using the template engine is easy. First: create an ``index.html`` file in the ``www`` Folder. You should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
 
 ```html
 <html
@@ -315,7 +315,7 @@ The domain this service should bind to its ingress.
 ```charp
 [IcosCfg(Cfg.Domain, "exmaple.com")]
 ```
-The Domapath provided in the kubernetes ingress.
+The DomainPath provided in the kubernetes ingress.
 ```charp
 [IcosCfg(Cfg.DomainPath, "/")]
 ```
