@@ -2,9 +2,9 @@ run_code
 
 # ICOS
 
-Welcome to the ICOS testbed, using this you can try ICOS with out any installation or delay. First what is ICOS, Internal Comunication Orcistration Services is an automated microservice platfrom that takes monolithic applications and reweaves it into sperated microservices that are automaticly docerized and deployed to kubernetes. We will be creating a website that gives you the date and time, using two microservices althow using multiple micro-services are overkill the point is to provide an example.
+Welcome to the ICOS testbed, using this you can try ICOS without any installation or delay. First what is ICOS, Internal Communication Orchestration Services is an automated microservice platfrom that takes monolithic applications and reweaves it into sperated microservices that are automaticly dockerized and deployed to kubernetes. We will be creating a website that gives you the date and time, using two microservices although using multiple microservices are overkill. The point is to provide an example.
 
-The first microserivec will be called ``ITimeApi`` the goal of this microservice is to handel incomming http requests, then to call the second microservice called ``ITimeProvider`` and ask it for a string containg the date and time. 
+The first microserivece will be called ``ITimeApi`` the goal of this microservice is to handle incoming http requests, then to call the second microservice called ``ITimeProvider`` and ask it for a string containing the date and time. 
 
 # Services
 1. Create a new file called ``ITimeApi`` in the folder with this content:
@@ -67,7 +67,7 @@ The first microserivec will be called ``ITimeApi`` the goal of this microservice
     
 run_code
 
-Lets take a look at the console output down bellow to understand what icos is doing:
+Lets take a look at the console output down below to understand what icos is doing:
 
 First the Server Does some Setup.
 ```
@@ -126,8 +126,8 @@ Restoring Nuget Packages
 [DEBUG] [ReweaverEngine::Write(String)][itimeprovider] Found Dependence: CommandLine.dll
 [LOG] Done
 ```
-
-Now that ICOS has recompiled and reweaved the monolitchic program into sperated docker containers with custom binary protocals to facilitate Internal Remote Procedure calls.
+C
+Now ICOS has recompiled and reweaved the monolitchic program into seperated docker containers with custom binary protocals to facilitate Internal Remote Procedure calls.
 
 ```
 [LOG] Pushing Docker Images
@@ -156,7 +156,7 @@ caa9bb437898: Pushed
 latest: digest: sha256:7c707edda18ddd112560097e2aedcf5815765514e0f2aed93f7eb37fba91ad06 size: 2217
 Sending build context to Docker daemon 1.775MB
 
-Step 1/5 : FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+Step 1/5 : FROM mcr.microsoft.com/dotnet/core/sdk:3.1C
 ---> d9d656b4ceb2
 Step 2/5 : WORKDIR /app
 ---> Using cache
@@ -201,7 +201,7 @@ next the deployment for the Time Provider Microservice is created
 ```
 deployment.apps/itimeprovider created
 ```
-finally the service is created for the TimeProvider Microservice, TimeProvider does not need an ingress because it's only for internal usage
+finally, the service is created for the TimeProvider Microservice, TimeProvider does not need an ingress because it's only for internal usage
 ```
 service/itimeprovider created
 ```
