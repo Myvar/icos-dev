@@ -2,9 +2,9 @@ run_code
 
 # ICOS
 
-Welcome to the ICOS testbed, using this you can try ICOS without any installation or delay. First what is ICOS, Internal Communication Orchestration Services is an automated microservice platfrom that takes monolithic applications and reweaves it into sperated microservices that are automaticly dockerized and deployed to kubernetes. We will be creating a website that gives you the date and time, using two microservices although using multiple microservices are overkill. The point is to provide an example.
+Welcome to the ICOS testbed, using this you can try ICOS without any installation or delay. First what is ICOS, Internal Communication Orchestration Services is an automated microservice platform that takes monolithic applications and reweaves it into seperate microservices that are automatically dockerized and deployed to kubernetes. We will be creating a website that gives you the date and time, using two microservices. 
 
-The first microserivece will be called ``ITimeApi`` the goal of this microservice is to handle incoming http requests, then to call the second microservice called ``ITimeProvider`` and ask it for a string containing the date and time. 
+The first microservice will be called ``ITimeApi`` the goal of this microservice is to handle incoming http requests, then to call the second microservice called ``ITimeProvider`` and ask it for a string containing the date and time. 
 
 # Services
 1. Create a new file called ``ITimeApi`` in the folder with this content:
