@@ -126,19 +126,19 @@ namespace {{YOUR-NAME-SPACE}}.Implementation
 ```
 
 ### Build PipeLine Integration
-To setup the build integration setup the build script provided in the api docs, in your solutions root folder.
+To setup the build integration, setup the build script provided in the api docs, in your solutions root folder.
 
 
 # Description of what ICOS does
 
 ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
 
-You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them .
+You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them.
 
 # How To/ FAQ
 
 ### The Template Engine is Escaping all my HTML
-Instead of ``{{foo}}`` do ``{{{foo}}}`` thats 3 Brackets and it will work
+Instead of ``{{foo}}`` do ``{{{foo}}}`` that's 3 Brackets and it will work
 
 ### How to use Cookies
 To add your cookie to the ``HttpResponce.Cookies`` to create your Cookie. Thereafter your Cookie will be present in ``HttpRequest.Cookies``.
@@ -211,10 +211,10 @@ ICOS has two primary types of microservices and three methods of inter microserv
 
 Http microservices have two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and are designed for internal use only.
 
- Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
+Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
 # Structure
-A recommended structure for your project is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
+A recommended structure for your project, is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
 
 # ICP Service
 The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
@@ -230,7 +230,7 @@ The ICP service is the simplest form of microservice to create. Create an interf
 
 ```
 
-Next you will merely implement the interface again. It is recommended to place the implementation in the implementation folder 
+Next you will implement the interface again. It is recommended to place the implementation in the implementation folder 
 
 ```csharp
     public class TimeProvider : ITimeProvider
@@ -330,7 +330,7 @@ And now for the ``IUserView``
     }
 
 ```
-Note that the  index has the same Name as the file index. Multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
+Note that the  index has the same Name as the file index, multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
 Now create a class called ``User`` in the ``Model`` folder:
 
 ```csharp
@@ -376,7 +376,7 @@ public class Gateway : IGateway
  We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the micro service, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the actual implementation of the interface, running in another container .
 
 # CFG File 
-The config file must be placed in the ``_res`` file. Simply look at the example below with the comments describing what every setting does .
+The config file must be placed in the ``_res`` file. Look at the example below with the comments describing what every setting does .
 ```yaml
 kubernetes-namespace: test # the kubernetes namespace, NOTE: the ns will not be auto created you must create it yourself
 
@@ -406,7 +406,7 @@ When creating an Http Microservice, every method must have an ``IcosHttpPath`` a
         HttpResponse GetSpotInQueue(HttpRequest req);
     }
 ```
-The Method GetSpotInQueue has the Argument ``guid`` it can be used as follows:
+The Method GetSpotInQueue has the Argument ``guid`` It can be used as follows:
 ```chsarp
  public HttpResponse GetSpotInQueue(HttpRequest req)
         {
