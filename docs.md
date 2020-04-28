@@ -214,7 +214,7 @@ Http microservices have two methods of operation. The first method is a rest API
 Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
 # Structure
-A recommended structure for your project, is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understanding way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
+A recommended structure for your project, is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understandable way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
 
 # ICP Service
 The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
@@ -264,7 +264,7 @@ First let's take a look at an example of a simple API that gives you the time of
     }
 ```
 
-Again it is recommended to place this in the services folder. The two attributes that you want to change or the last to the ``domain`` and ``domain path``. Every method in the API way of doing things must return an HTTP response and accept an HTTP request as the first argument. The attribute defining the path is also mandatory. We will discuss this attribute in a later section in this documentation entitled attributes .
+Again, it is recommended to place this in the services folder. The two attributes that you want to change or the last to the ``domain`` and ``domain path``. Every method in the API way of doing things must return an HTTP response and accept an HTTP request as the first argument. The attribute defining the path is also mandatory. We will discuss this attribute in a later section in this documentation entitled attributes .
 
 Now let's look at the implementation of the Gateway :
 ```csharp
@@ -330,7 +330,7 @@ And now for the ``IUserView``
     }
 
 ```
-Note that the  index has the same Name as the file index, multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
+Note that the index has the same Name as the file index, multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
 Now create a class called ``User`` in the ``Model`` folder:
 
 ```csharp
@@ -346,7 +346,7 @@ public class User
         public string Email { get; set; }
 }
 ```
-Now we can implement  the user view  as follows :
+Now we can implement the user view as follows :
 
 ```csharp
 public class UserView : IUserView
@@ -373,7 +373,7 @@ public class Gateway : IGateway
 }
 
 ```
- We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the micro service, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the actual implementation of the interface, running in another container .
+We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the microservice, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the actual implementation of the interface, running in another container .
 
 # CFG File 
 The config file must be placed in the ``_res`` file. Look at the example below with the comments describing what every setting does .

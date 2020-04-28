@@ -1,6 +1,6 @@
 # Api Key
 
-You can acquire your api key, once you have logedin by going to the Api page, and clicking on the new button, all api calls must have a valid api key provided using a get query for eg:
+You can acquire your api key, once you have logged in by going to the Api page, and clicking on the new button, all api calls must have a valid api key provided using a get query for eg:
 ``https://api.myvar.cloud/build/4f90e126-edcc-4711-9fb0-385c9161c20b/status?key=55C5C10F610C0CC396523DB60A82C076``
 
 # Example Script
