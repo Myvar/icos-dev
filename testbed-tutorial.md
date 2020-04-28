@@ -1,3 +1,7 @@
+# ICOS
+
+Welcome to the ICOS testbed, using this you can try ICOS with out any installation or delay. First what is ICOS, Internal Comunication Orcistration Services. We will be creating a website that gives you the time 
+
 # Services
 1. Create a new file called ``ITimeApi`` in the folder with this content:
     ```csharp

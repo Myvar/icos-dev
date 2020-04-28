@@ -6,8 +6,128 @@ Internal Communications Orchestration Services
 
 ### Requirements
 A Kubernetes Cluster
+Dotnet Core
 
-{{TODO need to create the contracts first}}
+### Setup
+1. Create a new Dotnet Core Project
+2. Install the Nuget Package: ``Icos``
+3. Edit your ``.csproj`` File and add the following:
+```xml
+    <ItemGroup>
+        <EmbeddedResource Include="_res/**/*" />
+    </ItemGroup>
+```
+
+Your Full File should look something like this:
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="_res/**/*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Icos" Version="1.0.0" />
+    </ItemGroup>
+    
+</Project>
+```
+4. Create a _res folder at the root of your project
+5. Add a file with the following content to ``_res/cfg.yml`` (replace the proper parts with your values):
+```yaml
+kubernetes-namespace: <YOUR-KUBE-NAMESPACE>
+
+docker-registry: <YOUR-DOCKER-REGISTRY>/
+
+content: www
+```
+
+### Services
+1. Create a new directory called ``Services``
+2. Create a new file called ``ITimeApi`` in the folder with this content:
+```csharp
+using Icos.Attributes;
+using Icos.Enums;
+using Icos.Http;
+
+namespace {{YOUR-NAME-SPACE}}.Services
+{
+    [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
+    [IcosCfg(Cfg.LoadBalanceStrategy, LoadBalanceStrategy.RoundRobin)]
+    [IcosCfg(Cfg.Protocol, Protocol.Http)]
+    [IcosCfg(Cfg.Domain, "{{Your domain}}")]
+    [IcosCfg(Cfg.DomainPath, "/")]
+    public interface ITimeApi
+    {
+        [IcosHttpPath("/")]
+        HttpResponse Index(HttpRequest req);
+    }
+}
+```
+3. Create a new file called ``ITimeProvider`` in the folder with this content:
+```csharp
+using Icos.Attributes;
+using Icos.Enums;
+
+namespace {{YOUR-NAME-SPACE}}.Services
+{
+    [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
+    [IcosCfg(Cfg.LoadBalanceStrategy, LoadBalanceStrategy.RoundRobin)]
+    [IcosCfg(Cfg.Protocol, Protocol.Icp)]
+    public interface ITimeProvider
+    {
+        string GetTime();
+    }
+}
+```
+### Implementation
+
+1. Create a new folder called ``Implementation``
+2. Create a file called ``TimeApi.cs`` in the folder with the following content:
+```csharp
+using Icos.Http;
+using {{YOUR-NAME-SPACE}}.Services;
+
+#pragma warning disable 649
+
+namespace {{YOUR-NAME-SPACE}}.Implementation
+{
+    public class TimeApi : ITimeApi
+    {
+        
+        private ITimeProvider _provider;
+        
+        public HttpResponse Index(HttpRequest req)
+        {
+            return new HttpResponse("Time: " + _provider.GetTime());
+        }
+    }
+}
+```
+3. Create a file called ``TimeProvider.cs`` in the folder with this content:
+```csharp
+    using System;
+    using {{YOUR-NAME-SPACE}}.Services;
+
+    namespace {{YOUR-NAME-SPACE}}.Implementation
+    {
+        public class TimeProvider : ITimeProvider
+        {
+            public string GetTime()
+            {
+                return DateTime.Now.ToString();
+            }
+        }
+    }
+```
+
+### Build PipeLine Integration
+To setup the build integration setup the build script provided in the api docs, in your solutions root folder.
+
 
 # Description of what ICOS does
 
