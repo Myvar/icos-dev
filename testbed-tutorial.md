@@ -206,3 +206,5 @@ finally the service is created for the TimeProvider Microservice, TimeProvider d
 service/itimeprovider created
 ```
 
+Don't forget to Tell your team and friends about ICOS
+
