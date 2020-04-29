@@ -96,7 +96,7 @@ cd ..
 ## Create
 
 ``https://api.myvar.cloud/build/create``
-Use this endpoint to create a new build, the body of the responce json will contain a Guid for the spesific build.
+Use this endpoint to create a new build, the body of the responce json will contain a Guid for the specific build.
 
 ## Upload
 
@@ -120,5 +120,5 @@ Once you have started the build and waited for it to finish, you can download it
 ## Delete
 
 ``https://api.myvar.cloud/build/{guid}/delete``
-Deletes both the uploaded binarys and artifacts related to this build.
+Deletes both the uploaded binaries and artifacts related to this build.
 

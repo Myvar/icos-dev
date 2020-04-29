@@ -39,7 +39,7 @@ The first microservice will be called ``ITimeApi`` the goal of this microservice
 # Implementation
 
 1. Create a new folder called ``Implementation``
-2. Create a file called ``TimeApi.cs`` in the folder with the following content:
+2. Create a file called ``Tim eApi.cs`` in the folder with the following content:
     ```csharp
         public class TimeApi : ITimeApi
         {
@@ -75,7 +75,7 @@ Connection To Server Open
 starting
 Login to docker registry
 ```
-Next The nuget packages are restored, and icos does its thing
+Next The nuget packages are restored, and ICOS does its thing
 ```
 Restoring Nuget Packages
 
@@ -126,8 +126,8 @@ Restoring Nuget Packages
 [DEBUG] [ReweaverEngine::Write(String)][itimeprovider] Found Dependence: CommandLine.dll
 [LOG] Done
 ```
-C
-Now ICOS has recompiled and reweaved the monolitchic program into seperated docker containers with custom binary protocals to facilitate Internal Remote Procedure calls.
+
+Now ICOS has recompiled and reweaved the monolitchic program into seperated docker containers with custom binary protocols to facilitate Internal Remote Procedure calls.
 
 ```
 [LOG] Pushing Docker Images
