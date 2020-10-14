@@ -83,6 +83,7 @@ namespace {{YOUR-NAME-SPACE}}.Services
         string GetTime();
     }
 }
+
 ```
 ### Implementation
 
