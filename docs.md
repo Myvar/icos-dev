@@ -53,6 +53,7 @@ content: www
 using Icos.Attributes;
 using Icos.Enums;
 using Icos.Http;
+
 namespace {{YOUR-NAME-SPACE}}.Services
 {
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
