@@ -19,7 +19,7 @@ Dotnet Core
 ```
 
 Your Full File should look something like this:
-XML
+```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
