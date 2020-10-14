@@ -19,7 +19,7 @@ Dotnet Core
 ```
 
 Your Full File should look something like this:
-```xml
+XML
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
@@ -126,14 +126,14 @@ namespace {{YOUR-NAME-SPACE}}.Implementation
 ```
 
 ### Build PipeLine Integration
-To setup the build integration, setup the build script provided in the api docs, in your solutions root folder.
+To setup the build integration, setup the build script provided in the API docs, in your solutions root folder.
 
 
 # Description of what ICOS does
 
-ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
+ICOS is a program that takes your monolithic code and recompiles it or reweaves it into separate microservices that can then be deployed onto a Kubernetes cluster. It does this by using interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces; an internal communication protocol that is generated to form a custom binary protocol can then be introduced.
 
-You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a kubernetes Spec file to deploy them.
+You simply write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a Kubernetes Spec file to deploy them.
 
 # How To/ FAQ
 
@@ -146,7 +146,7 @@ To add your cookie to the ``HttpResponce.Cookies`` to create your Cookie. Therea
 ### How to add ``Access-Control-Allow-Origin`` header
 
 ### P2P
-Note: P2P is currently considered to be in beta and is not to be used for mission critical systems.
+Note: P2P is currently considered to be in beta and is not to be used for mission-critical systems.
 
 Simply use ``Action<>`` or ``Func<>`` and call it to create p2p communication for more details, look at the following example
 
@@ -168,14 +168,14 @@ To use a Custom TCP or UDP port, create an Http Microservice and add the CustomP
 
 ```
 
-This will still create a web page that is accessible, but when you implement the interface with the custom port, simply open a Tcp or UDP server in the constructor and it will have the open ports.
+This will still create an accessible web page, but when you implement the interface with the custom port, simply open a TCP or UDP server in the constructor and it will have the open ports.
 
 NOTE: You will have to add proper configs to your Kubernetes Cluster and Load Balancers to enable your custom port to be ingressed.
 
 ### How Do I Use SSL
 Follow this tutorial:
 https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes
-Then Add this to your ``_res`` file:
+Then add this to your ``_res`` file:
 ``Ingress.yaml``
 ```yaml
 # NAME={{NAME}} NAMESPACE={{NAMESPACE}} DOMAIN={{DOMAIN}} PATH={{PATH}} SERVICEPORT={{SERVICEPORT}}
@@ -207,17 +207,17 @@ spec:
 ```
 
 # Microservices
-ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the APi, the second kind is the Internal microservice. The three methods of communication are http, ICP and P2P .
+ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the API, the second kind is the Internal microservice. The three methods of communication are HTTP, ICP, and P2P.
 
 Http microservices have two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and are designed for internal use only.
 
-Use HTTP microservices to create web pages and API's. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
+Use HTTP microservices to create web pages and APIs. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
 
 # Structure
-A recommended structure for your project, is to create a few folders in your project, one for implementation and one for the services and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understandable way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
+A recommended structure for your project is to create a few folders in your project, one for implementation and one for the services, and finally for models. This is not mandatory but it helps to maintain a properly structured and easy to follow and understandable way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
 
 # ICP Service
-The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder .
+The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally, these attributes do not change so you can just copy and paste them. It is recommended that you place these interfaces in the services folder.
 
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
@@ -230,7 +230,7 @@ The ICP service is the simplest form of microservice to create. Create an interf
 
 ```
 
-Next you will implement the interface again. It is recommended to place the implementation in the implementation folder 
+Next, you will implement the interface again. It is recommended to place the implementation in the implementation folder 
 
 ```csharp
     public class TimeProvider : ITimeProvider
@@ -247,7 +247,7 @@ Using the iTimeProvider interface in another microservice will be discussed in t
 
 # HTTP Service
 
-HTTP microservices are a bit more complicated.  There are two methods of exposing an http interface. The first is to simply use an API, the second method is to use the template engine. Let's take a look at both .
+HTTP microservices are a bit more complicated.  There are two methods of exposing an HTTP interface. The first is to simply use an API, the second method is to use the template engine. Let's take a look at both.
 
 ## API
 First let's take a look at an example of a simple API that gives you the time of day 
@@ -264,7 +264,7 @@ First let's take a look at an example of a simple API that gives you the time of
     }
 ```
 
-Again, it is recommended to place this in the services folder. The two attributes that you want to change or the last to the ``domain`` and ``domain path``. Every method in the API way of doing things must return an HTTP response and accept an HTTP request as the first argument. The attribute defining the path is also mandatory. We will discuss this attribute in a later section in this documentation entitled attributes .
+Again, it is recommended to place this in the services folder. The two attributes that you want to change or the last to the ``domain`` and ``domain path``. Every method in the API way of doing things must return an HTTP response and accept an HTTP request as the first argument. The attribute defining the path is also mandatory. We will discuss this attribute in a later section in this documentation entitled attributes.
 
 Now let's look at the implementation of the Gateway :
 ```csharp
@@ -278,7 +278,7 @@ public class Gateway : IGateway
         }
 }
 ```
-Let's take a look at some of the constructors for the HTTP response .
+Let's take a look at some of the constructors for the HTTP response.
 
 Returns the string as a webpage with the default content type of ``text/html``
 ```csharp
@@ -330,7 +330,7 @@ And now for the ``IUserView``
     }
 
 ```
-Note that the index has the same Name as the file index, multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices .
+Note that the index has the same name as the file index, multiple files can be served by creating more methods in the same interface. You can have as many interfaces as you like to separate them into different microservices.
 Now create a class called ``User`` in the ``Model`` folder:
 
 ```csharp
@@ -357,7 +357,7 @@ public class UserView : IUserView
         }
 }
 ```
-Note that we are returning the user object and that the properties of the object are used in the templating engine to replace the moustache handlebars.
+Note that we are returning the user object and that the properties of the object are used in the templating engine to replace the mustache handlebars.
 
 ## Static Host
 Any content example used earlier:
@@ -373,18 +373,18 @@ public class Gateway : IGateway
 }
 
 ```
-We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the microservice, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the actual implementation of the interface, running in another container .
+We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the microservice, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the actual implementation of the interface, running in another container.
 
 # CFG File 
-The config file must be placed in the ``_res`` file. Look at the example below with the comments describing what every setting does .
+The config file must be placed in the ``_res`` file. Look at the example below with the comments describing what every setting does.
 ```yaml
-kubernetes-namespace: test # the kubernetes namespace, NOTE: the ns will not be auto created you must create it yourself
+kubernetes-namespace: test # the kubernetes namespace, NOTE: the ns will not be auto-created you must create it yourself
 
 docker-registry: foo/ # the docker registry you plan on using 
 
 content: www #the static and template content directory
 
-Domain-overides: #domain overrides look at Attributes section on docs for more examples
+Domain-overides: #domain overrides look at the Attributes section on docs for more examples
     api_sub_domain: stage
 ```
 
@@ -427,15 +427,15 @@ The only Load Balance Strategy available is Round Robin, other Strategies are pl
 ```charp
 [IcosCfg(Cfg.LoadBalanceStrategy, LoadBalanceStrategy.RoundRobin)]
 ```
-The Protocol can be one of two options. The first is ``Protocol.Http`` to create a web api or page, or ``Protocol.Icp`` to mark a service for Internal use only
+The Protocol can be one of two options. The first is ``Protocol.Http`` to create a web API or page, or ``Protocol.Icp`` to mark the service for Internal use only
 ```charp
 [IcosCfg(Cfg.Protocol, Protocol.Http)]
 ```
-The domain this service should bind to its ingress.
+The domain of this service should bind to its ingress.
 ```charp
 [IcosCfg(Cfg.Domain, "exmaple.com")]
 ```
-The DomainPath provided in the kubernetes ingress.
+The DomainPath is provided in the Kubernetes ingress.
 ```charp
 [IcosCfg(Cfg.DomainPath, "/")]
 ```
@@ -450,7 +450,7 @@ Used to enable the Static View Engine. NOTE: View engines may only be used on HT
 
 
 # Kubespec Overrides (Optional)
-If you want to change the kubernetes specs, to add resource constraints or use a cert issue with ssl, you can easily create a file in the ``_res`` folder with the following names and base content, Note you must be sure to add the proper reg-cred for your private docker registries.
+If you want to change the Kubernetes specs, to add resource constraints, or use a cert issue with SSL, you can easily create a file in the ``_res`` folder with the following names and base content, Note you must be sure to add the proper reg-cred for your private docker registries.
 
 Deployment.yaml
 ```yaml
