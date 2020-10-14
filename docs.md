@@ -36,8 +36,10 @@ Your Full File should look something like this:
     
 </Project>
 ```
+
 4. Create a _res folder at the root of your project
 5. Add a file with the following content to ``_res/cfg.yml`` (replace the correct parts with your values):
+
 ```yaml
 kubernetes-namespace: <YOUR-KUBE-NAMESPACE>
 
