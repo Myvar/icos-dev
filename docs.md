@@ -52,6 +52,7 @@ content: www
 ### Services
 1. Create a new directory called ``Services``
 2. Create a new file called ``ITimeApi`` in the folder with this content:
+
 ```csharp
 using Icos.Attributes;
 using Icos.Enums;
@@ -71,7 +72,9 @@ namespace {{YOUR-NAME-SPACE}}.Services
     }
 }
 ```
+
 3. Create a new file called ``ITimeProvider`` in the folder with this content:
+
 ```csharp
 using Icos.Attributes;
 using Icos.Enums;
@@ -88,10 +91,12 @@ namespace {{YOUR-NAME-SPACE}}.Services
 }
 
 ```
+
 ### Implementation
 
 1. Create a new folder called ``Implementation``
 2. Create a file called ``TimeApi.cs`` in the folder with the following content:
+
 ```csharp
 using Icos.Http;
 using {{YOUR-NAME-SPACE}}.Services;
@@ -112,7 +117,9 @@ namespace {{YOUR-NAME-SPACE}}.Implementation
     }
 }
 ```
+
 3. Create a file called ``TimeProvider.cs`` in the folder with this content:
+
 ```csharp
     using System;
     using {{YOUR-NAME-SPACE}}.Services;
