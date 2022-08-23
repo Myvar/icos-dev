@@ -5,8 +5,8 @@ Internal Communications Orchestration Services
 # Installation
 
 ### Requirements
-A Kubernetes Cluster
-Dotnet Core
+- A Kubernetes Cluster
+- Dotnet Core
 
 ### Setup
 1. Create a new Dotnet Core Project
@@ -137,14 +137,14 @@ namespace {{YOUR-NAME-SPACE}}.Implementation
 ```
 
 ### Build PipeLine Integration
-To setup the build integration, configuration the build script provided in the API docs in your project solutions root folder.
+To setup the build integration, configure the build script provided in the API docs in your project solutions root folder.
 
 
 # Description of what ICOS does
 
-ICOS is a program that takes your monolithic code and recompiles it, and reweaves it into separate microservices that deploy onto your Kubernetes cluster. It uses interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces. The internal communication protocol that's generated binds the services by generating a custom binary protocol.
+ICOS is a program that takes your monolithic code and reweaves it into separate microservices that deploys onto your Kubernetes cluster. It uses interfaces as a natural separation between logic and simple dependency injection to bind the code by creating a proxy implementation of the interfaces. The internal communication protocol that's generated binds the services by generating a custom binary protocol.
 
-You write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes, and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a Kubernetes Spec file to deploy them.
+You write a program in C# with different interfaces for every microservice, you mark them with a couple of attributes and ICOS will automatically rebuild them into separate executables and microservices, all neatly dockerized up with a Kubernetes Spec file to deploy them.
 
 # How To/ FAQ
 
@@ -152,7 +152,7 @@ You write a program in C# with different interfaces for every microservice, you 
 Instead of ``{{foo}}`` do ``{{{foo}}}`` that's 3 Brackets, and it will work.
 
 ### How to use Cookies
-To add your Cookie to the ``HttpResponce.Cookies`` to create your Cookie. After that, your Cookie will be present in ``HttpRequest.Cookies``.
+Add your Cookie to the ``HttpResponce.Cookies`` dictionary, after that your Cookie will be present in the HTTP Response headers.
 
 ### How to add ``Access-Control-Allow-Origin`` header
 
@@ -218,17 +218,17 @@ spec:
 ```
 
 # Microservices
-ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the API; the second kind is the Internal microservice. The three methods of communication are HTTP, ICP, and P2P.
+ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the API; the second is the Internal microservice, there are three methods of communication HTTP, ICP, and P2P.
 
-Http microservices have two methods of operation. The first method is a rest API and the second method is a render based engine with templating. Http microservices are exposed to the internet using Ingress,  whereas ICP or internal microservices are never exposed to the internet and only designed for internal use.
+Http microservices have two methods of operation, the first method is a rest API and the second is a rendering based engine with templating. Http microservices are exposed to the internet using Ingress, whereas ICP or internal microservices are never exposed to the internet and only designed for internal use.
 
-Use HTTP microservices to create web pages and APIs. Use internal microservices to create workers buffers and queues or any internal services that need completion to facilitate modular scaling. 
+Use HTTP microservices to create web pages and APIs, use internal microservices to create worker buffers and queues or any internal services that needs completion to facilitate modular scaling. 
 
 # Structure
-Your project's recommended structure is to create a few folders in your project, one for implementation and one for the services, and finally for models. This approach is not mandatory, but it helps to maintain a properly structured and easy to follow and understandable way of structuring things so that groups of programmers can work together without the confusion that inevitably results from poorly defined standards. 
+Your project's recommended structure is to create a few directories, one for implementation and one for the services and finally for models. This approach is not mandatory but it helps to maintain a properly structured and easy to follow way of structuring so that teams can work together without the confusion of undefined structure. 
 
 # ICP Service
-The ICP service is the simplest form of microservice to create. Create an interface with all the methods you want that service to do, then mark it with a couple of attributes. Generally, these attributes do not change, so you can copy and paste them. It's recommended that you place these interfaces in the services folder.
+The ICP service is the simplest form of a microservice to create, create an interface with all the methods you want that service to do, then mark it with a couple of attributes. It's recommended that you place these interfaces in the services folder.
 
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
@@ -275,9 +275,9 @@ First let's take a look at an example of a simple API that gives you the time of
     }
 ```
 
-Again, it's recommended to place this in the services folder. The two attributes that you want to change or the last to the ``domain`` and ``domain path``. Every method in the API way of doing things must return an HTTP response and accept an HTTP request as the first argument. The attribute defining the path is also mandatory. We will discuss this attribute in a later section in this documentation entitled attributes.
+It's recommended to place this in the services folder, the two attributes that you want to change are the last two the ``domain`` and ``domain path``. Every method in the API must return an HTTP response and accept an HTTP request as the first argument, the attribute defining the path is also mandatory. This is discussed in the documentation section entitled Attributes.
 
-Now let's look at the implementation of the Gateway :
+Now let's look at the implementation of the Gateway:
 ```csharp
 public class Gateway : IGateway
 {
@@ -295,7 +295,7 @@ Returns the string as a webpage with the default content type of ``text/html``
 ```csharp
 public HttpResponse(string res)
 ```
-Will return String as Response body with the provided mimeType
+Will return a String as a Response body with the provided mimeType
 ```csharp
 public HttpResponse(string res, string mimeType)
 ```
@@ -384,7 +384,7 @@ public class Gateway : IGateway
 }
 
 ```
-We can see that the implementation uses the time provider microservice to get the time. In this example, by creating a private field for the microservice, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the interface's actual implementation, running in another container.
+We can see that the implementation uses the time provider microservice to get the time in this example, by creating a private field for the microservice, the dependency injection system will automatically assign the proxy interface that will use a custom TCP binary protocol to communicate with the interface's actual implementation running in another container.
 
 # CFG File 
 The config file must be in the ``_res`` file. Look at the example below with the comments describing what every setting does.
@@ -401,7 +401,7 @@ Domain-overides: #domain overrides look at the Attributes section on docs for mo
 
 # Attributes
 ## IcosHttpPath
-When creating an Http Microservice, every method must have an ``IcosHttpPath`` attribute. To determine the path it will serve, Paths may also include Arguments for eg:
+When creating an Http Microservice every method must have an ``IcosHttpPath`` attribute, to determine the path it will be served on. Paths may also include Arguments for eg:
 ```csharp
     [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
     [IcosCfg(Cfg.LoadBalanceStrategy, LoadBalanceStrategy.RoundRobin)]
@@ -430,7 +430,7 @@ The page will respond with ``some_test_id``
 
 ## IcosCfg
 
-All Services must be Stateless in Type. There are plans for stateful services.
+All Services must be Stateless in Type.
 ```charp
 [IcosCfg(Cfg.ServiceType, ServiceType.Stateless)]
 ```
@@ -438,7 +438,7 @@ The only Load Balance Strategy available is Round Robin.
 ```charp
 [IcosCfg(Cfg.LoadBalanceStrategy, LoadBalanceStrategy.RoundRobin)]
 ```
-The Protocol can be one of two options. The first is ``Protocol.Http`` to create a web API or page, or ``Protocol.Icp`` to mark the service for Internal use only
+The Protocol can be one of two options, the first is ``Protocol.Http`` to create a web API or page or ``Protocol.Icp`` to mark the service for Internal use only
 ```charp
 [IcosCfg(Cfg.Protocol, Protocol.Http)]
 ```
@@ -446,11 +446,11 @@ The domain of this service should bind to its Ingress.
 ```charp
 [IcosCfg(Cfg.Domain, "exmaple.com")]
 ```
-The DomainPath to assign to the Kubernetes ingress.
+The DomainPath to assign to the Kubernetes Ingress.
 ```charp
 [IcosCfg(Cfg.DomainPath, "/")]
 ```
-Add Custom ports to the Service and Ingress Setup. You will be responsible for using the port yourself.
+Add Custom ports to the Service and Ingress Setup, you will be responsible for using the port yourself(Using TcpListener or Sockets).
 ```charp
 [IcosCfg(Cfg.CustomPort, 9090)]
 ```
