@@ -220,7 +220,7 @@ spec:
 # Microservices
 ICOS has two primary types of microservices and three methods of inter microservice communication. The first kind is the API; the second is the Internal microservice, there are three methods of communication HTTP, ICP, and P2P.
 
-Http microservices have two methods of operation, the first method is a rest API and the second is a rendering based engine with templating. Http microservices are exposed to the internet using Ingress, whereas ICP or internal microservices are never exposed to the internet and only designed for internal use.
+HTTP microservices have two methods of operation, the first method is a rest API and the second is a rendering based engine with templating. HTTP microservices are exposed to the internet using Ingress, whereas ICP or internal microservices are never exposed to the internet and only designed for internal use.
 
 Use HTTP microservices to create web pages and APIs, use internal microservices to create worker buffers and queues or any internal services that needs completion to facilitate modular scaling. 
 
