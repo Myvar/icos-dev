@@ -258,7 +258,7 @@ Using the iTimeProvider interface in another microservice will be discussed in t
 
 # HTTP Service
 
-HTTP microservices are a bit more complicated.  There are two methods of exposing an HTTP interface. The first is to use an API; the second method is to use the template engine. Let's take a look at both.
+HTTP microservices are a bit more complicated, there are two methods of exposing an HTTP interface. The first is to use an API; the second method is to use the template engine. Let's take a look at both:
 
 ## API
 First let's take a look at an example of a simple API that gives you the time of day 
@@ -314,7 +314,9 @@ public HttpResponse(byte[] res, string mimeType)
 
 ## Template Engine
 
-Using the template engine is easy. First: create an ``index.html`` file in the ``www`` Folder. You should find this folder in your ``_res`` folder. Next create an interface for the file and place it in services :
+Using the template engine is easy. 
+- First: create an ``index.html`` file in the ``www`` Folder. You should find this folder in your ``_res`` folder. 
+- Next create an interface for the file and place it in services:
 
 ```html
 <html
@@ -461,7 +463,7 @@ Used to enable the Static View Engine. NOTE: View engines may only be used on HT
 
 
 # Kubespec Overrides (Optional)
-If you want to change the Kubernetes specs, to add resource constraints, or use a cert issue with SSL, you can easily create a file in the ``_res`` folder with the following names and base content, Note you must be sure to add the proper reg-cred for your private docker registries.
+If you want to change the Kubernetes specs to add resource constraints or use a cert issuer with SSL, you can easily create a file in the ``_res`` folder with the following names and base content. Note you must be sure to add the proper reg-cred for your private docker registries.
 
 Deployment.yaml
 ```yaml
