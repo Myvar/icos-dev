@@ -1,6 +1,6 @@
 # Api Key
 
-You can acquire your API key once you have logged in by going to the Api page and clicking on the new button. All API calls must have a valid API key provided using a get query:
+You can acquire your API key once you have logged in by going to the API page and clicking on the new button. All API calls must have a valid API key provided using a get query:
 ``https://api.myvar.cloud/build/4f90e126-edcc-4711-9fb0-385c9161c20b/status?key=55C5C10F610C0CC396523DB60A82C076``
 
 # Example Script
@@ -85,7 +85,7 @@ cd ./build
 chmod +x build.sh
 ./build.sh
 
-echo "you can now apply the Kubernetes sepc file in the build directory"
+echo "you can now apply the Kubernetes spec file in the build directory"
 
 cd ..
 
@@ -101,7 +101,7 @@ Use this endpoint to create a new build, the body of the response json will cont
 ## Upload
 
 ``https://api.myvar.cloud/build/{guid}/upload``
-You must upload a zip of the publish folder in your projects bin folder after your ran the command ``dotnet publish``, the files in the zip must not be in a directory but rather at the root of the zip.
+Upload a zip of the publish folder in your projects bin folder after your ran the command ``dotnet publish``, the files in the zip must not be in a directory but rather at the root of the zip.
 
 ## Start
 
