@@ -42,7 +42,7 @@ UPLOAD_RAW=$(curl --request POST --data-binary "@$p/$PROJECT_NAME.zip" "https://
 UPLOAD_STATUS=$(echo $UPLOAD_RAW |  jq --raw-output '.Status')
 
 if [ "$UPLOAD_STATUS" -eq "1" ];then
-  echo "Upload Faild";
+  echo "Upload failed";
   echo "$($UPLOAD_RAW |  jq --raw-output '.Message')"
   exit 1
 fi
@@ -53,7 +53,7 @@ echo "Starting build"
 START_RAW=$(curl -s "https://api.myvar.cloud/build/$TOKEN/start?key=$API_KEY" )
 START_STATUS=$(echo $START_RAW |  jq --raw-output '.Status')
 if [ "$START_STATUS" -eq "1" ];then
-  echo "Starting Faild";
+  echo "Starting failed";
   echo "$($START_RAW |  jq --raw-output '.Message')"
   exit 1
 fi
