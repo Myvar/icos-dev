@@ -315,7 +315,7 @@ public HttpResponse(byte[] res, string mimeType)
 ## Template Engine
 
 Using the template engine is easy. 
-- First: create an ``index.html`` file in the ``www`` Folder. You should find this folder in your ``_res`` folder. 
+- First: create an ``index.html`` file in the ``www`` folder. You should find this folder in your ``_res`` folder. 
 - Next create an interface for the file and place it in services:
 
 ```html
