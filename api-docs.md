@@ -1,6 +1,6 @@
 # Api Key
 
-You can acquire your api key, once you have logged in by going to the Api page, and clicking on the new button, all api calls must have a valid api key provided using a get query for eg:
+You can acquire your API key once you have logged in by going to the Api page and clicking on the new button. All API calls must have a valid API key provided using a get query:
 ``https://api.myvar.cloud/build/4f90e126-edcc-4711-9fb0-385c9161c20b/status?key=55C5C10F610C0CC396523DB60A82C076``
 
 # Example Script
@@ -96,26 +96,26 @@ cd ..
 ## Create
 
 ``https://api.myvar.cloud/build/create``
-Use this endpoint to create a new build, the body of the responce json will contain a Guid for the specific build.
+Use this endpoint to create a new build, the body of the response json will contain a Guid for the specific build.
 
 ## Upload
 
 ``https://api.myvar.cloud/build/{guid}/upload``
-You must upload a zip of the publish folder in your projects bin folder after your ran the command ``dotnet publish``, the files in the zip must not be in a directory, but rather at the root of the zip.
+You must upload a zip of the publish folder in your projects bin folder after your ran the command ``dotnet publish``, the files in the zip must not be in a directory but rather at the root of the zip.
 
 ## Start
 
 ``https://api.myvar.cloud/build/{guid}/start``
-This call will start the
+This call will start the build.
 ## Status
 
 ``https://api.myvar.cloud/build/{guid}/status``
-This call will return the status of your build
+This call will return the status of your build.
 
 ## Artifact
 
 ``https://api.myvar.cloud/build/{guid}/artifact``
-Once you have started the build and waited for it to finish, you can download it from this url
+Once you have started the build and it has finished, you can download it from this url.
 
 ## Delete
 
