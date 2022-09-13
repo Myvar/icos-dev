@@ -1,6 +1,6 @@
 # ICOS
 
-Internal Communications Orchestration Services
+Internal Communication and Orchestration Services
 
 # Installation
 
